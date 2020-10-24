@@ -1,0 +1,22 @@
+$primary-color:cyan;
+$second-color:blue;
+.slide-bar{
+    min-height: 500px;
+    padding: 0px;
+    .btn-dark{
+        float:right;
+        cursor: pointer;
+    }
+}
+.table-headers, .table-rows{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    .table-header{
+        color: blue;
+        font-size: 20px;
+    }
+    .table-cell{
+        margin-bottom: 10px;
+        
+    }
+}
