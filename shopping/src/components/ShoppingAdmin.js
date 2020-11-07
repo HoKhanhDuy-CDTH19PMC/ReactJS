@@ -1,92 +1,38 @@
 import React from 'react'
-import  '../admin.scss'
+import '../admin.scss'
 import SlideBar from './SlideBar'
-function ShoppingAdmin() {
-    return (
-        <div>
-            <navbar>
-                <div className="row col-md-12 bg-danger m-0">
-                    Navbar
-                </div>
-            </navbar>
-            <main>
-            <div class="row m-0">
-          <SlideBar></SlideBar>
-                    <div className="col-md-9">
-                        <div className="main-content">
-                                <h3>Products</h3>
-                                <button className="btn btn-primary">ADD</button>
+import Main from './Main'
+import Navbar from './Navbar'
+import 'font-awesome/css/font-awesome.min.css'
+export default class ShoppingAdmin extends React.Component {
+    state = {
+        sidebar_open: true,
+    }
+    // pt moi phai dung arrow de co bien this
+    toggleSidebar = () => {
+        this.setState(
+            {
+                sidebar_open: !this.state.sidebar_open
+            }
+        )
+    }
+    render() {
+        return (
+            <div>
+                <Navbar></Navbar>
+                <main className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-3 bg-primary slide-bar" id="slide-bar" style={{ 'display': this.state.sidebar_open ? 'block' : 'none' }}>
                         </div>
-                        <div className="table-headers">
-                        <div className="table-header">
-                            Name
+                        <div className={this.state.sidebar_open ? "col-md-9": "col-md-12"}>
+                            <SlideBar toggleSidebar={this.toggleSidebar}></SlideBar>
+                            <Main></Main>
                         </div>
-                        <div className="table-header">
-                            Prince
-                        </div>
-                        <div className="table-header">
-                            Id
-                        </div>
-                        <div className="table-header">
-                            Image
-                        </div>
-                        <div className="table-header">
-                            Action
-                        </div>
-                        </div>
-                        <div className= "table-rows">
-                            <div className="table-cell">Name Product</div>
-                            <div className="table-cell">1000&</div>
-                            <div className="table-cell">03060195</div>
-                             <div className="table-cell">{Image}</div>
-                            <div className="table-cell">
-                                <div className="btn btn-danger mr-1">Edit</div>
-                                <div className="btn btn-danger">Delete</div>
-                            </div>
-                        </div>
-                        <div className= "table-rows">
-                            <div className="table-cell">Name Product</div>
-                            <div className="table-cell">1000&</div>
-                            <div className="table-cell">03060195</div>
-                            <div className="table-cell">{Image}</div>
-                            <div className="table-cell">
-                                <div className="btn btn-danger mr-1">Edit</div>
-                                <div className="btn btn-danger">Delete</div>
-                            </div>
-                        </div>
-                        <div className= "table-rows">
-                            <div className="table-cell">Name Product</div>
-                            <div className="table-cell">1000&</div>
-                            <div className="table-cell">03060195</div>
-                            <div className="table-cell">{Image}</div>
-                            <div className="table-cell">
-                                <div className="btn btn-danger mr-1">Edit</div>
-                                <div className="btn btn-danger">Delete</div>
-                            </div>
-                        </div>
-                        <div className= "table-rows">
-                            <div className="table-cell">Name Product</div>
-                            <div className="table-cell">1000&</div>
-                            <div className="table-cell">03060195</div>
-                            <div className="table-cell">Image</div>
-                            <div className="table-cell">
-                                <div className="btn btn-danger mr-1">Edit</div>
-                                <div className="btn btn-danger">Delete</div>
-                            </div>
-                        </div>
-            
-                    </div>  
-                   
-                </div>
-            </main>
-        <script>
-            
-
-            
-        </script>
-        </div>
-     
-    )
+                    </div>
+                </main>
+           
+            </div>
+        )
+    }
 }
 
-export default ShoppingAdmin

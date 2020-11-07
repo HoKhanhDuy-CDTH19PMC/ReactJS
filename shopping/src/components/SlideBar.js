@@ -1,14 +1,13 @@
 import React from 'react'
-export default function SlideBar() {
-    return ( 
-        <div>
-              <div className="col-md-3 bg-primary slide-bar" id="slide-bar">
-                     Slidebar 
-                     <div className="btn btn-dark click-close">
-                            X
-                     </div>
-                    </div>
-        </div>
+import 'font-awesome/css/font-awesome.min.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+export default function SlideBar(props) {
+    return ( <div  className= " content-admin">
+            <button className="btn p-0 m-0"onClick={props.toggleSidebar} >
+                <FontAwesomeIcon icon={['fas' , 'align-justify']} />
+                </button>
+            <h3 className="mt-1">Admin</h3>
+   </div>
     )
 }
 
