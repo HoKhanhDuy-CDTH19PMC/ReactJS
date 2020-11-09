@@ -43,18 +43,22 @@ $second-color:blue;
 .modal{
    height: 100vh;
    width: 100vw;
-   position: fixed;
    display: flex;
    justify-content: center;
    align-items: center;
    .content-modal{
-       width: 50%;
-       height: 50%;
-background-color: #fff;
-box-shadow: 50px 200px 215px #888888 inset;
-border: 1px solid black;
-
-       position: relative;
+                width: 50%;
+                height: 55%;
+            background-color: #fff;
+            box-shadow: 50px 200px 215px #888888 inset;
+            border: 1px solid black;  position: relative;
+           .content-modal-header{
+               display: flex;
+               color: $primary-color;
+               justify-content: center;
+               align-items: center;
+               font-size: 35px;
+           }
        .close{
            position: absolute;
            top: 10px;
@@ -97,12 +101,10 @@ border: 1px solid black;
 margin-bottom: 10px;
 padding: 0 10px;
 box-shadow: 0px 3px 5px 0px #888888;
-
+color: red;
 }
 .form-group{
-    h3{
-        color: $primary-color;
-    }
+  
     input{
         margin-bottom: 10px;
     }

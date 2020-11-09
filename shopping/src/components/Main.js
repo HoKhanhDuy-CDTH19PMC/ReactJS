@@ -7,7 +7,24 @@ export default class  Main extends React.Component {
     state={
         open:false,
         products :[
-        ]
+            {
+                id:'bcsd2j',
+                name:"ABC 1",
+                price:20,
+                img:""
+            },
+            {
+                id:'8sdsb2',
+                name:"ABC 2",
+                price:20,
+                img:""
+            },  {
+                id:'sdhsod',
+                name:"ABC 3",
+                price:20,
+                img:""
+            },
+        ], isEditing:undefined //index
     }
     
     addProduct=(name,price,id,img)=>{
@@ -16,18 +33,55 @@ export default class  Main extends React.Component {
             price,
             id,
             img
-        
         }
       this.setState({
         products:[...this.state.products,product]
       })
     
     }
+    updateProduct=(name,price,id)=>{
+        const new_products=[...this.state.products];
+        new_products[this.state.isEditing]={
+            ...new_products[this.state.isEditing],
+            name,
+            price,
+            id
+        }
+        this.setState({
+            products:new_products
+        })
+    }
+    deleteProduct=(id)=>{
+        const update_product=[...this.state.products].filter((product)=>{
+            return product.id!==id
+        })
+        this.setState({
+            products:update_product
+        })
+    }
+     updateIsEditing=(id)=>{
+        const product_index=this.state.products.findIndex((product)=>
+        {
+              return  product.id===id
+        })
+        this.setState({
+            isEditing:product_index
+        })
+        this.toggleModal()
+
+     }
     toggleModal=()=>{
         this.setState({
             open:!this.state.open
         })
 
+    }
+   
+   
+    clearIsEditing=()=>{
+        this.setState({
+            isEditing:undefined
+        })
     }
     render(){
         return <>
@@ -43,11 +97,16 @@ export default class  Main extends React.Component {
                 {
                     this.state.products.length>0?
                    this.state.products.map((product)=>{
-                       return <ProductRow deleteProduct={this.deleteProduct} key={`Product_id_${product.id}`} product={product}/ >
+                       return <ProductRow updateIsEditing={this.updateIsEditing} deleteProduct={this.deleteProduct} key={`Product_id_${product.id}`} product={product}/ >
                     }):<Empty/>
                } 
                {
-           this.state.open?<Modal toggleModal={this.toggleModal}   addProduct={this.addProduct}/>:""
+           this.state.open?<Modal 
+           updateProduct={this.updateProduct}
+           clearIsEditing={this.clearIsEditing} 
+           editingProduct={this.state.products[this.state.isEditing]}
+            toggleModal={this.toggleModal} 
+              addProduct={this.addProduct}/>:""
        }
        </main> 
        
