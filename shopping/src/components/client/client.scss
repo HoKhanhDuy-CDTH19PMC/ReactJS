@@ -1,0 +1,63 @@
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+
+#sidebar-left{
+    background-color: red;
+    min-width: 100px;
+    min-height: 500px;
+}
+#sidebar-right{
+    background-color: blue;
+    position: relative;
+    .row{
+        .col-md-3{
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    }
+}
+#footer{
+    background-color: black;
+
+}
+
+.card{
+    text-overflow: clip; 
+    margin-bottom: 10px;
+}
+.card-body .card-title{
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+    min-width: 150px;
+    overflow: hidden;
+
+}
+#productDetail{
+    #left{
+        text-align: center;
+        overflow: hidden;
+        width: 100%;
+        background-position: center center;
+        background-size: cover;
+    }
+    #right{
+        .productDetail-Name{
+            color: red;
+            font-size: 30px;
+        }
+    }
+    
+}
+.Product-Card{
+    background-color: yellow;
+    padding: 10px;
+}
+.Product-Total{
+    background-color: cyan;
+    min-width: 100px;
+    min-height: 100px;
+}

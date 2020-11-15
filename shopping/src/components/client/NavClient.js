@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, 
+import { 
     Navbar,
     Collapse, 
     Container, 
@@ -14,6 +14,7 @@ import { Button,
     NavLink, 
     UncontrolledDropdown, 
 } from 'reactstrap';
+import{Link} from 'react-router-dom'
 function NavClient() {
     const toggle=true;
     const isOpen=true;
@@ -22,7 +23,9 @@ function NavClient() {
       <React.Fragment>
              <Container fluid={true}>
                                 <Navbar color="light" light expand="md">
-                            <NavbarBrand href="/">reactstrap</NavbarBrand>
+                            <NavbarBrand href="/">
+                                <Link to="/admin">ADMIN</Link>
+                            </NavbarBrand>
                             <NavbarToggler onClick={toggle} />
                             <Collapse isOpen={isOpen} navbar>
                             <Nav className="mr-auto" navbar>

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../admin.scss'
+import './admin.scss'
 import SlideBar from './SlideBar'
 import Main from './Main'
 import Navbar from './Navbar'
@@ -16,6 +16,7 @@ export default class ShoppingAdmin extends React.Component {
             }
         )
     }
+ 
     render() {
         return (
             <div>
