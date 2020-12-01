@@ -5,8 +5,9 @@ import { faCode, faHighlighter,faAngleDoubleLeft,
   faAngleDoubleRight,
   faAlignJustify,
   faPlus, 
-  faTimesCircle
+  faTimesCircle,faCartPlus
 }from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 library.add(
   faCode,
   faHighlighter,
@@ -14,6 +15,7 @@ library.add(
   faAngleDoubleRight,
   faAlignJustify,
   faPlus,
-  faTimesCircle
+  faTimesCircle,
+  faCartPlus
   // more icons go here
 );

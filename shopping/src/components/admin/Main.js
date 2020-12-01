@@ -1,10 +1,14 @@
-import React from 'react'
+import React,{useRef} from 'react'
 import Content_Header from './ContentHeader'
 import Empty from './Empty'
 import Modal from './Modal'
 import ProductRow from './ProductRow'
-import axios from 'axios'
+import Axios from 'axios'
+import Swal from 'sweetalert2'
+import MaterialTable from 'material-table'
+
 export default class  Main extends React.Component {
+
     state={
         open:false,
         products :[
@@ -30,38 +34,98 @@ export default class  Main extends React.Component {
     componentDidMount()
     {
         console.log("DID MOUNT")
-        axios.get("https://shopping-api-with-jwt.herokuapp.com/products").then(res=>{
-            console.log(res)
+        Axios.get("https://shopping-api-with-jwt.herokuapp.com/products").then(res=>{
             this.setState({
                 products:res.data
             })
+        }).catch(err=>{
+            console.log(err)
         })
     }
     addProduct=(name,price,id,image)=>{
-        const product={
+         const product={
+             name,
+             price,
+             id,
+             image
+         }
+       this.setState({
+         products:[...this.state.products,product]
+       })
+    Axios.post('https://shopping-api-with-jwt.herokuapp.com/products' ,{
+        name,
+        price,
+        id,
+        image
+    },{
+        headers:{
+            token:window.localStorage.getItem('admin_token')
+        }
+    }).then(res=>{
+        console.log(res)
+        Swal.fire({
+            title:"Create Successfully",
+            timer:1700,
+            icon:'success'
+        })
+    }).catch(err=>{
+        console.log(err)
+        Swal.fire({
+            title:'Create Unsuccessfully',
+            text:err.message,
+            timer:1700,
+            icon:'error'
+        })
+    })
+    }
+    updateProduct=(name,price,id,image)=>{
+        Axios.patch(`https://shopping-api-with-jwt.herokuapp.com/products/$id`,{
+            id, 
             name,
             price,
-            id,
             image
-        }
-      this.setState({
-        products:[...this.state.products,product]
-      })
-    
-    }
-    updateProduct=(name,price,id)=>{
+        },{
+            headers:{
+                token:window.localStorage.getItem('admin_token')
+            }
+        }).then(res=>{
+            console.log(res)
+            // Swal.fire({
+            //     title:"Create Successfully",
+            //     timer:1700,
+            //     icon:'success'
+            // })
+        }).catch(err=>{
+            console.log(err)
+            // Swal.fire({
+            //     title:'Create Unsuccessfully',
+            //     text:err.message,
+            //     timer:1700,
+            //     icon:'error'
+            // })
+        })
         const new_products=[...this.state.products];
         new_products[this.state.isEditing]={
             ...new_products[this.state.isEditing],
             name,
             price,
-            id
+            id,
+            image
         }
         this.setState({
             products:new_products
         })
     }
     deleteProduct=(id)=>{
+        // const typingTimeoutRef = useRef(null)
+
+        // // if (typingTimeoutRef.current) {
+        // //     clearTimeout(typingTimeoutRef.current)
+        // // }
+
+        // // typingTimeoutRef.current = setTimeout(() => {
+
+        // // }, 1000)
         const update_product=[...this.state.products].filter((product)=>{
             return product.id!==id
         })
@@ -96,7 +160,8 @@ export default class  Main extends React.Component {
     render(){
         return <>
         <main>
-                       <Content_Header addProduct={this.addProduct} toggleModal={this.toggleModal}></Content_Header>
+                       <Content_Header addProduct={this.addProduct} 
+                       toggleModal={this.toggleModal}></Content_Header>
                <div className="table-headers">
                    <div className="table-header"> Name</div>
                    <div className="table-header">Price</div>
@@ -104,6 +169,17 @@ export default class  Main extends React.Component {
                    <div className="table-header">Image</div>
                    <div className="table-header">Action</div>
                </div>
+               {/* <div style={{ maxWidth: '100%' }}>
+                <MaterialTable
+                columns={[
+                    { title: 'Adı', field: 'name' }
+            
+                ]}
+                data={[{ name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 }]}
+                title="Demo Title"
+                ></MaterialTable>
+            </div> */}
+
                 {
                     this.state.products.length>0?
                    this.state.products.map((product)=>{

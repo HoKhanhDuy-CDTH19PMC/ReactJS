@@ -16,6 +16,14 @@ export default class ShoppingAdmin extends React.Component {
             }
         )
     }
+    componentDidMount()
+    {
+        const token=window.localStorage.getItem('admin_token');
+        if(!token)
+        {
+            this.props.history.push('/admin/login')
+        }
+    }
  
     render() {
         return (

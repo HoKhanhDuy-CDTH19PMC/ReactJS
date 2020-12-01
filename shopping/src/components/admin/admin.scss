@@ -37,7 +37,7 @@ $second-color:blue;
         border-left: 0px;
         border-right: 0px;
         border-top: 0px;
-        padding: 10px 0px 10px 5px;
+        padding: 0px 0px 10px 5px;
         background-size: 100px 100px;
         img{
             max-width: 200px;
@@ -52,8 +52,7 @@ $second-color:blue;
    justify-content: center;
    align-items: center;
    .content-modal{
-                width: 50%;
-                height: 55%;
+               width: 60%;
             background-color: #fff;
             box-shadow: 50px 200px 215px #888888 inset;
             border: 1px solid black;  position: relative;
@@ -127,13 +126,15 @@ color: red;
 .bg-color-primary{
    background-color: $primary-color;
 }
-
+main{
+    position: relative;
     .empty{
-        background-image: url(https://nguoitot.vn/assets/images/cart-empty.png);
-        background-repeat: no-repeat;
-        min-height: 200px;
-    
+        position: absolute;
+        left: 20%;
+       color: #f8b600;
     }
+}
+
 
 .login-page{
     min-height: 100vh;

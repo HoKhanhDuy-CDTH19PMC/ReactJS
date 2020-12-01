@@ -2,7 +2,13 @@ import Axios from 'axios'
 import React from 'react'
 import Product from './Product'
 import{Spinner} from 'reactstrap'
-export default class ProductList extends React.Component {
+import API_CONSTANT from '../../asset/constant/api'
+import {connect} from 'react-redux'
+import { css } from "@emotion/core";
+import ClipLoader from "react-spinners/ClipLoader";
+
+class ProductList extends React.Component {
+    
     state={
         products:[],
         loading:false
@@ -12,7 +18,7 @@ export default class ProductList extends React.Component {
         this.setState({
             loading:true
         })
-        Axios.get("https://shopping-api-with-jwt.herokuapp.com/products").then(res=>{
+        Axios.get(API_CONSTANT.DOMAIN + '/products').then(res=>{
             this.setState({
                 products:res.data,
                 loading:false
@@ -25,14 +31,31 @@ export default class ProductList extends React.Component {
         return (
             <>
             {
-                this.state.loading && <Spinner color="primary" ></Spinner>
+                this.state.loading && <div className="loading-ProductList d-flex justify-content-center align-items-center ">
+                    <ClipLoader
+          size={300}
+          color={"red"}
+          loading={this.state.loading}
+        /></div> 
             }
                 {this.state.products.map((product, index) => {
-                    return <Product key={`$product_${index}`} name={product.name} price={product.price} image={product.image}></Product>
+                    return <Product addToCart={this.props.addToCart} key={`$product_${index}`} id={product.id} name={product.name} price={product.price} image={product.image[0]}></Product>
                 })}
             </>
         )
     }
 }
+const mapDispatchToProps=(disPatch)=>{
+    return {
+       addToCart:(product,quantity)=>{
+          disPatch({type:"ADD_TO_CART", payload:{
+              ...product,
+              quantity
+          }})
+       }
+        
+    }
+}
+export default connect(null,mapDispatchToProps)(ProductList)
 
 

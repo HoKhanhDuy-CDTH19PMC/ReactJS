@@ -1,4 +1,5 @@
 import React from 'react'
+import{Link} from 'react-router-dom'
 import { 
     Navbar,
     Collapse, 
@@ -12,53 +13,62 @@ import {
     NavbarToggler, 
     NavItem, 
     NavLink, 
-    UncontrolledDropdown, 
+    UncontrolledDropdown,
+    Button, 
 } from 'reactstrap';
-import{Link} from 'react-router-dom'
-function NavClient() {
+import {connect} from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+function NavClient(props) {
     const toggle=true;
     const isOpen=true;
     return (
         
       <React.Fragment>
-             <Container fluid={true}>
-                                <Navbar color="light" light expand="md">
-                            <NavbarBrand href="/">
+             <Container fluid={true} className="sticky-top">
+                                <Navbar id="navbar" light expand="md">
+                                  <NavbarBrand>
+                                    <Link exact to="/">LOGO</Link>
+                                  </NavbarBrand>
+                            <NavbarBrand >
                                 <Link to="/admin">ADMIN</Link>
                             </NavbarBrand>
-                            <NavbarToggler onClick={toggle} />
-                            <Collapse isOpen={isOpen} navbar>
+                            {/* <NavbarToggler onClick={toggle} /> */}
+                            <Collapse isOpen={isOpen} navbar className="d-flex">
                             <Nav className="mr-auto" navbar>
                                 <NavItem>
-                                <NavLink href="/components/">Components</NavLink>
+                                <NavLink >
+                                  <Link to="/products/">Products</Link>
+                                  </NavLink>
                                 </NavItem>
-                                <NavItem>
-                                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-                                </NavItem>
-                                <UncontrolledDropdown nav inNavbar>
-                                <DropdownToggle nav caret>
-                                    Options
-                                </DropdownToggle>
-                                <DropdownMenu right>
-                                    <DropdownItem>
-                                    Option 1
-                                    </DropdownItem>
-                                    <DropdownItem>
-                                    Option 2
-                                    </DropdownItem>
-                                    <DropdownItem divider />
-                                    <DropdownItem>
-                                    Reset
-                                    </DropdownItem>
-                                </DropdownMenu>
-                                </UncontrolledDropdown>
+                                {/* <NavLink >
+                                  <Link to="/cart">Cart</Link>
+                                </NavLink> */}
+                   
                             </Nav>
-                            <NavbarText>Simple Text</NavbarText>
+                            <NavbarBrand>
+                            <NavLink >
+                                  <Link to="/cart">
+                                  <Button outline={false} color="white" className="cart-btn">
+                          
+                          <span className="badger">{props.cart_total}</span>
+                        <FontAwesomeIcon icon={['fa' , 'cart-plus',]} size='lg' className="cart-plus" /> </Button> 
+                                  </Link>
+                                </NavLink>
+                      
+                            </NavbarBrand>
+
                             </Collapse>
                         </Navbar>
         </Container>
       </React.Fragment>
     )
 }
-
-export default NavClient
+const mapStateToProps=(state)=>{
+const  total=state.cart.reduce((sum,product)=>{
+    return sum=product.quantity+sum
+  },0)
+  return {
+    cart_total:total
+  }
+}
+export default connect(mapStateToProps)(NavClient)
