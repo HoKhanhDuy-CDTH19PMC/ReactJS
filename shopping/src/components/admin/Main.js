@@ -13,22 +13,23 @@ export default class  Main extends React.Component {
         open:false,
         products :[
             // {
-            //     id:'bcsd2j',
-            //     name:"ABC 1",
-            //     price:20,
-            //     img:""
-            // },
-            // {
-            //     id:'8sdsb2',
-            //     name:"ABC 2",
-            //     price:20,
-            //     img:""
-            // },  {
-            //     id:'sdhsod',
-            //     name:"ABC 3",
-            //     price:20,
-            //     img:""
-            // },
+            //     id: "bcsd2j",
+            //     name: "ABC 1",
+            //     price: 20,
+            //     img: "",
+            //   },
+            //   {
+            //     id: "8sdsb2",
+            //     name: "ABC 2",
+            //     price: 20,
+            //     img: "",
+            //   },
+            //   {
+            //     id: "sdhsod",
+            //     name: "ABC 3",
+            //     price: 20,
+            //     img: "",
+            //   },
         ], isEditing:undefined //index
     }
     componentDidMount()
@@ -41,7 +42,42 @@ export default class  Main extends React.Component {
         }).catch(err=>{
             console.log(err)
         })
+        Axios.post("https://shopping-api-with-jwt.herokuapp.com/carts",{
+              products: [
+                // {
+                //   id: "bcsd2j",
+                //   name: "ABC 1",
+                //   price: 20,
+                //   img: "",
+                // },
+                // {
+                //   id: "8sdsb2",
+                //   name: "ABC 2",
+                //   price: 20,
+                //   img: "",
+                // },
+                // {
+                //   id: "sdhsod",
+                //   name: "ABC 3",
+                //   price: 20,
+                //   img: "",
+                // },
+              ],
+            },
+            {
+              headers: {
+                token: window.localStorage.getItem("admin_token"),
+              },
+            }
+          )
+          .then((res) => {
+            console.log("Cart", res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
     }
+    
     addProduct=(name,price,id,image)=>{
          const product={
              name,
@@ -79,7 +115,7 @@ export default class  Main extends React.Component {
     })
     }
     updateProduct=(name,price,id,image)=>{
-        Axios.patch(`https://shopping-api-with-jwt.herokuapp.com/products/$id`,{
+        Axios.patch(`https://shopping-api-with-jwt.herokuapp.com/products/${id}`,{
             id, 
             name,
             price,
@@ -117,6 +153,15 @@ export default class  Main extends React.Component {
         })
     }
     deleteProduct=(id)=>{
+        Axios.delete(`https://shopping-api-with-jwt.herokuapp.com/products/${id}`,{
+            headers:{
+                token: window.localStorage.getItem("admin_token"),
+            },
+        }).then((res)=>{
+            console.log(res)
+        }).catch((err)=>{
+            console.log(err)
+        })
         // const typingTimeoutRef = useRef(null)
 
         // // if (typingTimeoutRef.current) {

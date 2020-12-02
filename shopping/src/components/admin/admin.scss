@@ -1,7 +1,24 @@
 
 $primary-color: #f8b600;
 $second-color:blue;
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+
+}
 #slide-bar
+{
+    background-color: #f8b600;
+}
+#navbarAD{
+ background-color: black;
+ a{
+    color: white;
+
+ }
+}
 .slide-bar{
     min-height: 500px;
     padding: 0px;
@@ -56,6 +73,7 @@ $second-color:blue;
             background-color: #fff;
             box-shadow: 50px 200px 215px #888888 inset;
             border: 1px solid black;  position: relative;
+            border-radius: 10px;
            .content-modal-header{
                display: flex;
                color: $primary-color;

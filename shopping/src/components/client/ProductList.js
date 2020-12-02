@@ -1,10 +1,8 @@
 import Axios from 'axios'
 import React from 'react'
 import Product from './Product'
-import{Spinner} from 'reactstrap'
 import API_CONSTANT from '../../asset/constant/api'
 import {connect} from 'react-redux'
-import { css } from "@emotion/core";
 import ClipLoader from "react-spinners/ClipLoader";
 
 class ProductList extends React.Component {

@@ -2,6 +2,8 @@ import React from 'react';
 import ShoppingAdmin from './components/admin/ShoppingAdmin.js';
 import ClientShopping from './components/client/ClientShopping.js';
 import ProductDetail from './components/client/ProductDetail.js';
+import Carts from './components/admin/Carts.js';
+
 import Cart from './components/client/Cart.js';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import Login from './components/admin/Login.js';
@@ -108,6 +110,9 @@ function App() {
             </Route>    
             <Route path='/products'>
                <ClientShopping></ClientShopping>
+            </Route>
+            <Route path="/carts">
+              <Carts></Carts>
             </Route>
             </Switch>
       </div>

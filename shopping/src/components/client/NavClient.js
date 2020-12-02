@@ -26,18 +26,18 @@ function NavClient(props) {
       <React.Fragment>
              <Container fluid={true} className="sticky-top">
                                 <Navbar id="navbar" light expand="md">
-                                  <NavbarBrand>
-                                    <Link exact to="/">LOGO</Link>
-                                  </NavbarBrand>
-                            <NavbarBrand >
+                                  <NavLink>
+                                    <Link exact to="/">HOME</Link>
+                                  </NavLink>
+                            <NavLink >
                                 <Link to="/admin">ADMIN</Link>
-                            </NavbarBrand>
+                            </NavLink>
                             {/* <NavbarToggler onClick={toggle} /> */}
                             <Collapse isOpen={isOpen} navbar className="d-flex">
                             <Nav className="mr-auto" navbar>
                                 <NavItem>
                                 <NavLink >
-                                  <Link to="/products/">Products</Link>
+                                  <Link to="/products/">PRODUCTS</Link>
                                   </NavLink>
                                 </NavItem>
                                 {/* <NavLink >

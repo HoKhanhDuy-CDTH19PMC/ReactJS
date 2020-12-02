@@ -78,12 +78,12 @@ class ProductDetail extends React.Component {
                                 <Row className="productDetail-Name">
                                     {name}
                                 </Row>
-                                <Row>Price: {price} $</Row>
+                                <Row>Price: {price}$</Row>
                                 <Row>Product ID {this.props.match.params.id}</Row>
 
                                 <CommonQuantityInput value={this.state.quantity} onChange={this.handleChangeQuantity}></CommonQuantityInput>
                                 <Row>
-                                    <Button outline color="warning"  onClick={this.handleAddToCart}>Them vao gio hang</Button>
+                                    <Button  color="warning"  onClick={this.handleAddToCart}>Add to cart</Button>
                                 </Row>
                             </Col>
                         </Row>

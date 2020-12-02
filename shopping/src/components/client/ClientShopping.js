@@ -15,7 +15,7 @@ export default function ClientShopping(props) {
         <React.Fragment>
            <NavClient></NavClient>
           <Container >
-             <Row>
+             <Row className="mt-3">
                <SidebarLeft></SidebarLeft>
               <SidebarRight></SidebarRight>
              </Row>
