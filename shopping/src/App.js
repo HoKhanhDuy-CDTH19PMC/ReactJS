@@ -15,7 +15,10 @@ import { faCode, faHighlighter,faAngleDoubleLeft,
   faAngleDoubleRight,
   faAlignJustify,
   faPlus, 
-  faTimesCircle,faCartPlus } from '@fortawesome/free-solid-svg-icons'
+  faTimesCircle,faCartPlus,
+  faSearch,
+  faMapMarker
+ } from '@fortawesome/free-solid-svg-icons'
 
 library.add(  faCode,
   faHighlighter,
@@ -24,7 +27,10 @@ library.add(  faCode,
   faAlignJustify,
   faPlus,
   faTimesCircle,
-  faCartPlus)
+  faCartPlus,
+  faSearch,
+  faMapMarker
+  )
 function App() {
   const initState ={
     cart:[
@@ -111,8 +117,8 @@ function App() {
             <Route path='/products'>
                <ClientShopping></ClientShopping>
             </Route>
-            <Route path="/carts">
-              <Carts></Carts>
+            <Route path="/carts/:id" render={props=>
+            <Carts {...props} ></Carts>} >
             </Route>
             </Switch>
       </div>

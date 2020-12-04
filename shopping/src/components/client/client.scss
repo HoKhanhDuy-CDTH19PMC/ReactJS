@@ -95,6 +95,7 @@ a:hover{
         // border-radius: 10px;
         
         .productDetail-Name{
+            margin-left: -2px;
             color: red;
             font-size: 30px;
         }
@@ -102,7 +103,7 @@ a:hover{
             margin-bottom: 20px;
         }
         .quantityInput{
-            margin-left: -12px;
+            margin-left: 5px;
         }
         
     }
@@ -215,4 +216,25 @@ img{
     color: #f8b600;
     font-size: 30px;
     margin-bottom: 10px;
+}
+#footer{
+    color: white;
+    padding: 10px 100px;
+    .img-logo{
+        width: 100px;
+        height: 100px;
+    }
+    .info{
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+    .content-big{
+        margin-left: 10px;
+        font-size: 25px;
+        font-weight: 600;
+    }
+    .icon-location{
+        color: white;
+        margin-right: 5px;
+    }
 }

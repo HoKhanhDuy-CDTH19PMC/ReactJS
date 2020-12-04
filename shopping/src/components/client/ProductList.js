@@ -31,13 +31,14 @@ class ProductList extends React.Component {
             {
                 this.state.loading && <div className="loading-ProductList d-flex justify-content-center align-items-center ">
                     <ClipLoader
-          size={300}
-          color={"red"}
+          size={200}
+          color={"blue"}
           loading={this.state.loading}
         /></div> 
             }
                 {this.state.products.map((product, index) => {
-                    return <Product addToCart={this.props.addToCart} key={`$product_${index}`} id={product.id} name={product.name} price={product.price} image={product.image[0]}></Product>
+                    return <Product addToCart={this.props.addToCart} key={`$product_${index}`} id={product.id} name={product.name} price={product.price} image={product.image ? product.image[0] : null}
+                    ></Product>
                 })}
             </>
         )

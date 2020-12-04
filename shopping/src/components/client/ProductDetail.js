@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Container } from 'reactstrap'
+import { Button, Container,CardSubtitle } from 'reactstrap'
 import {
     Col,
     Row,
@@ -54,7 +54,7 @@ class ProductDetail extends React.Component {
     handleAddToCart=()=>{
         this.props.addToCart({
             ...this.state.product_detail,
-            images:this.state.product_detail.image[0]
+            image:this.state.product_detail.image[0]
         },this.state.quantity)
     }
 
@@ -64,7 +64,7 @@ class ProductDetail extends React.Component {
         "https://product.hstatic.net/1000351433/product/e5c92366-2f71-425b-8d4b-49be6b8d2399_36fdea90d03a43cf8c53c7079f0c2db1_grande.jpg"
     ]
     render() {
-        const { name, price, image } = this.state.product_detail
+        const { name, price, image,id } = this.state.product_detail
         return (
             <React.Fragment>
                 <NavClient></NavClient>
@@ -75,16 +75,13 @@ class ProductDetail extends React.Component {
                                 <ImgProductDetail items={image}></ImgProductDetail>
                             </Col>
                             <Col md={7} id="right">
-                                <Row className="productDetail-Name">
+                                <CardSubtitle className="productDetail-Name">
                                     {name}
-                                </Row>
-                                <Row>Price: {price}$</Row>
-                                <Row>Product ID {this.props.match.params.id}</Row>
-
+                                </CardSubtitle>
+                                <CardSubtitle tag="h5" className="mb-3 text-muted">Product ID {this.props.match.params.id}</CardSubtitle>
+                                    <CardSubtitle tag="h5" className="mb-3 text-muted">Price: {price}$</CardSubtitle>
                                 <CommonQuantityInput value={this.state.quantity} onChange={this.handleChangeQuantity}></CommonQuantityInput>
-                                <Row>
                                     <Button  color="warning"  onClick={this.handleAddToCart}>Add to cart</Button>
-                                </Row>
                             </Col>
                         </Row>
                     </Container> :

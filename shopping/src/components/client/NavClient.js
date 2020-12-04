@@ -22,7 +22,6 @@ function NavClient(props) {
     const toggle=true;
     const isOpen=true;
     return (
-        
       <React.Fragment>
              <Container fluid={true} className="sticky-top">
                                 <Navbar id="navbar" light expand="md">

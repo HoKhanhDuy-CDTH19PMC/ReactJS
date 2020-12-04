@@ -28,6 +28,7 @@ function Product(props) {
                                     <CardTitle tag="h5" >
                                          <Link  to={`/products/${id}`}>{name}</Link>
                                     </CardTitle>
+                                    <CardSubtitle tag="h6" className="mb-2 text-muted">ID {id}</CardSubtitle>
                                     <CardSubtitle tag="h6" className="mb-2 text-muted">Price: {price}</CardSubtitle>
                                     <Button onClick={handleAddToCart}>Add to cart</Button>
                                     </CardBody>

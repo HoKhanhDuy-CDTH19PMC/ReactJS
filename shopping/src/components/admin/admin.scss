@@ -8,9 +8,20 @@ a:hover{
     text-decoration: none;
 
 }
+.content-order{
+    font-weight: bold;
+}
 #slide-bar
 {
-    background-color: #f8b600;
+    .nav-link{
+        color: black;
+    }
+    .list-group-item 
+    {
+        a{
+        color: black;
+    }
+}
 }
 #navbarAD{
  background-color: black;
@@ -104,12 +115,11 @@ a:hover{
     margin-bottom: 10px;
     .btn-add{
         background-color: $primary-color;
-        color: white;
+        color: black;
         font-weight: 700;
         font-size: 20px;
     }
     .name{
-        color: red;
         margin: auto;
         text-transform: uppercase;
     }
@@ -123,7 +133,6 @@ a:hover{
 margin-bottom: 10px;
 padding: 0 10px;
 box-shadow: 0px 3px 5px 0px #888888;
-color: red;
 }
 .form-group{
   
@@ -164,5 +173,20 @@ main{
        padding: 10px;
     }
 }
+.MTableToolbar-title-9{
+    font-weight: bold;
+    margin-left: -10px;
 
+}
 
+.search-row{
+    position: relative;
+    .search-icon{
+        position: absolute;
+        top: 25%;
+    }
+    #search-input{
+        padding-top: 10px;
+        padding-left: 20px;
+    }
+}

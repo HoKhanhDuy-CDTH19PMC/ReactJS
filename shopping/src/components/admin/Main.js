@@ -42,26 +42,9 @@ export default class  Main extends React.Component {
         }).catch(err=>{
             console.log(err)
         })
-        Axios.post("https://shopping-api-with-jwt.herokuapp.com/carts",{
+        Axios.post("https://shopping-api-with-jwt.herokuapp.com/products",{
               products: [
-                // {
-                //   id: "bcsd2j",
-                //   name: "ABC 1",
-                //   price: 20,
-                //   img: "",
-                // },
-                // {
-                //   id: "8sdsb2",
-                //   name: "ABC 2",
-                //   price: 20,
-                //   img: "",
-                // },
-                // {
-                //   id: "sdhsod",
-                //   name: "ABC 3",
-                //   price: 20,
-                //   img: "",
-                // },
+        
               ],
             },
             {

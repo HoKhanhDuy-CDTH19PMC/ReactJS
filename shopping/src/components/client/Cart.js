@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useRef } from 'react'
 import {
 
 
@@ -86,6 +86,7 @@ class CardProduct extends React.Component {
                                     <CardBody>
                                     <CardTitle tag="h5" >{name}
                                     </CardTitle>
+                                    <CardSubtitle tag="h6" className="mb-2 text-muted">ID: {id}</CardSubtitle>
                                     <CardSubtitle tag="h6" className="mb-2 text-muted">Price: {price}</CardSubtitle>
                                     <CommonQuantityInput className="" value={this.state.quantity} onChange={this.handleChangeQuantity}></CommonQuantityInput>
                                     </CardBody>
@@ -104,6 +105,7 @@ class CheckoutModal extends React.Component {
     phone: "",
     address: ""
   }
+  
   handleClose = () => {
     this.props.toggleModal()
   }
@@ -112,6 +114,32 @@ class CheckoutModal extends React.Component {
       [event.target.name]: event.target.value
     })
   }
+ handleCreateCarts =  ( )=>
+ {
+     const typingTimeoutRef = useRef(null)
+        if (typingTimeoutRef.current) {
+            clearTimeout(typingTimeoutRef.current)
+        }
+        typingTimeoutRef.current = setTimeout(() => {
+          Axios.post('https://shopping-api-with-jwt.herokuapp.com/carts',{
+            ...this.state,
+            cart:[
+              ...this.props.cart
+            ],
+            total_item:this.props.total_item,
+            total_price:this.props.total_price,
+            headers:{
+              token: window.localStorage.getItem("admin_token"),
+          }
+           }
+        ).then((res)=>{
+              console.log(res)
+           }).catch((err)=>{
+             console.log(err)
+           })
+        }, 500)
+  }
+
   handleSubmit = (event) => {
     event.preventDefault()
     
@@ -162,7 +190,10 @@ class CheckoutModal extends React.Component {
       <div className="content-modal p-2">
         <button className="close btn btn-primary" onClick={this.handleClose}>
           <FontAwesomeIcon icon={['fa', 'times-circle']} /></button>
-        <h3 className="content-modal-header">{this.props.editingProduct ? 'Update' : 'Create'} Product</h3>
+        <h3 className="content-modal-header">
+          {/* {this.props.editingProduct ? 'Update' : 'Create'}  */}
+          
+          Checkout</h3>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label ><h3>Full Name</h3></label>
